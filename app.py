@@ -18,12 +18,6 @@ class Shop(db.Model):
         return '<Frticle %r>' % self.id
 
 
-@app.route('/')
-@app.route('/home')
-def index():
-    product = Shop.query.order_by(Shop.id).all()
-    return render_template("index.html", product=product)
-
 
 @app.route('/sign')
 def sign_in():
@@ -52,6 +46,35 @@ def create_post():
 @app.route('/user/<string:name>/<int:id>')
 def user(name, id):
     return f'User: {name}, id: {id}'
+
+
+@app.route('/')
+@app.route('/home')
+def index():
+    product = Shop.query.order_by(Shop.id.desc()).all()
+    return render_template("index.html", product=product)
+
+
+@app.route('/product/<int:id>')
+def product(id):
+    id_product = Shop.query.get(id)
+    return render_template("product.html", id_product=id_product)
+
+@app.route('/product/<int:id>/del')
+def product_del(id):
+    id_product = Shop.query.get_or_404(id)
+    try:
+        db.session.delete(id_product)
+        db.session.commit()
+    except:
+        return "Произошла ошибка удаления"
+    return redirect('/')
+
+
+@app.route('/product/<int:id>/update')
+def product_update(id):
+    id_product = Shop.query.get(id)
+    return render_template("product.html", id_product=id_product)
 
 
 if __name__ == '__main__':
