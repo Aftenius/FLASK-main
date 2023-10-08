@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+create
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="display-1">Добавление товара</h1>
+    <form action="/create" class="row g-3" method="post">
+        <div class="mb-3">
+          <label for="formGroupExampleInput" class="form-label">Название</label>
+          <input type="text" name="title" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
+        </div>
+        <div class="mb-3">
+          <label for="formGroupExampleInput2" class="form-label">Краткое описание</label>
+          <input type="text" name="intro_text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
+        </div>
+        <div class="mb-3">
+          <label for="formGroupExampleInput3" class="form-label">Описание</label>
+          <input type="text" name="main_text" class="form-control" id="formGroupExampleInput3" placeholder="Another input placeholder">
+        </div>
+        <div class="mb-3">
+          <input type="submit" class="btn btn-outline-dark me-2" value="Отправить">
+        </div>
+
+    </form>
+</div>
+{% endblock %}

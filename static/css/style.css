@@ -1,0 +1,62 @@
+html,
+body {
+  height: 100%;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 1rem;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* code bootstrap */
+
+.head{
+    background-image: url('https://www.soyuz.ru/public/uploads/files/5/7625400/1005x558_2023070316281836bba89e26.jpg');
+    color: white;
+    border-radius: 25px;
+}
+
+.bline{
+width: fit-content;
+border-bottom: 1px solid black;
+}
+
+@media only screen and (max-width: 767px) {
+  /* Стили для мобильных устройств */
+  .head h1{
+    text-align: center;
+    padding: 80px 0;
+}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* Стили для планшетов */
+  .head h1{
+    text-align: center;
+    padding: 150px 0;
+}
+}
+
+@media only screen and (min-width: 992px) {
+  /* Стили для настольных устройств */
+  .head h1{
+    text-align: center;
+    padding: 150px 0;
+}
+}
