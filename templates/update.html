@@ -1,10 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}
+Обновление товара
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="display-1">Обновление товара</h1>
+    <form class="row g-3" method="post">
+        <div class="mb-3">
+          <label for="formGroupExampleInput" class="form-label">Название</label>
+          <input type="text" name="title" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" value="{{ product.title }}">
+        </div>
+        <div class="mb-3">
+          <label for="formGroupExampleInput2" class="form-label">Краткое описание</label>
+          <input type="text" name="intro_text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder" value="{{ product.intro_text }}">
+        </div>
+        <div class="mb-3">
+          <label for="formGroupExampleInput3" class="form-label">Описание</label>
+          <input type="text" name="main_text" class="form-control" id="formGroupExampleInput3" placeholder="Another input placeholder" value="{{ product.main_text }}">
+        </div>
+        <div class="mb-3">
+          <input type="submit" class="btn btn-outline-dark me-2" value="Обновить">
+        </div>
+
+    </form>
+</div>
+{% endblock %}

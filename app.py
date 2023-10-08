@@ -71,10 +71,22 @@ def product_del(id):
     return redirect('/')
 
 
-@app.route('/product/<int:id>/update')
+@app.route('/product/<int:id>/update', methods=['POST', 'GET'])
 def product_update(id):
-    id_product = Shop.query.get(id)
-    return render_template("product.html", id_product=id_product)
+    product_id = Shop.query.get(id)
+    if request.method == 'POST':
+        product_id.title = request.form['title']
+        product_id.intro_text = request.form['intro_text']
+        product_id.main_text = request.form['main_text']
+
+        try:
+            db.session.commit()
+            return redirect('/')
+        except:
+            return "Произошла ошибка обновления"
+    else:
+
+        return render_template("update.html", product=product_id)
 
 
 if __name__ == '__main__':
