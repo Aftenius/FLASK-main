@@ -18,6 +18,14 @@ class Shop(db.Model):
         return '<Frticle %r>' % self.id
 
 
+class Comment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    text = db.Column(db.String(300), nullable=False)
+    id_product_com = db.Column(db.Integer, nullable=False)
+
+    def __repr__(self):
+        return '<Frticle %r>' % self.id
 
 @app.route('/sign')
 def sign_in():
@@ -43,11 +51,6 @@ def create_post():
         return render_template("create.html")
 
 
-@app.route('/user/<string:name>/<int:id>')
-def user(name, id):
-    return f'User: {name}, id: {id}'
-
-
 @app.route('/')
 @app.route('/home')
 def index():
@@ -55,10 +58,27 @@ def index():
     return render_template("index.html", product=product)
 
 
-@app.route('/product/<int:id>')
+@app.route('/product/<int:id>/', methods=['POST', 'GET'])
 def product(id):
     id_product = Shop.query.get(id)
-    return render_template("product.html", id_product=id_product)
+    com_product = Comment.query.order_by(Comment.id.desc()).all()
+
+    if request.method == "POST":
+        id_product_com = id
+        name = request.form['name']
+        text = request.form['text']
+
+        com_post = Comment(id_product_com=id_product_com, name=name, text=text)
+
+        try:
+            db.session.add(com_post)
+            db.session.commit()
+            return redirect(f'/product/{id}')
+        except:
+            return "произошла ошибка"
+
+    else:
+        return render_template("product.html", id_product=id_product, com_product=com_product)
 
 @app.route('/product/<int:id>/del')
 def product_del(id):
@@ -84,6 +104,7 @@ def product_update(id):
             return redirect('/')
         except:
             return "Произошла ошибка обновления"
+
     else:
 
         return render_template("update.html", product=product_id)

@@ -13,7 +13,34 @@
         <p class="lead">
           <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Узнать больше</font></font></a>
         </p>
+        <form action="/product/{{ id_product.id }}/" method="post">
+          <div class="mb-3">
+            <label for="com" class="form-label">Ваше имя:</label>
+            <input type="text" name="name" class="form-control" id="com" aria-describedby="text">
+
+              <label for="com1" class="form-label">Отзыв:</label>
+            <input type="text" name="text" class="form-control" id="com1" aria-describedby="text">
+            <div id="emailHelp" class="form-text">Как вам этот сайт?</div>
+          </div>
+          <input type="submit" class="btn btn-sm btn-outline-secondary" value="Добавить отзыв">
+        </form>
+
     </div>
 </main>
+<section>
+    <div class="container">
+        <h6 class="display-6">Отзывы:</h6>
+
+        {% for el in com_product %}
+            {% if el.id_product_com|escape == id_product.id|escape %}
+                <div class="comment p-3">
+                    <h5>{{ el.name }}</h5>
+                    <p class="lead">{{ el.text }}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</section>
+<br><br>
 
 {% endblock %}
