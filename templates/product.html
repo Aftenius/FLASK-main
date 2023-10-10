@@ -9,6 +9,16 @@
 <main class="px-3">
     <div class="container">
         <h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit; text-align:center;">{{ id_product.title }}</font></font></h1>
+
+        <div class="container">
+          <div class="d-flex flex-row">
+            <span class="badge badge-primary mr-2 text-primary">{{ tag }}</span>
+            <span class="badge badge-secondary mr-2 text-primary">#sql</span>
+            <span class="badge badge-success mr-2 text-primary">#php</span>
+            <span class="badge badge-danger text-primary">#rust</span>
+          </div>
+        </div>
+
         <p class="lead"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ id_product.main_text }}</font></font></p>
         <p class="lead">
           <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Узнать больше</font></font></a>
@@ -32,12 +42,12 @@
         <h6 class="display-6">Отзывы:</h6>
 
         {% for el in com_product %}
-            {% if el.id_product_com|escape == id_product.id|escape %}
-                <div class="comment p-3">
-                    <h5>{{ el.name }}</h5>
-                    <p class="lead">{{ el.text }}</p>
-                </div>
-            {% endif %}
+
+            <div class="comment p-3">
+                <h5>{{ el.name }}</h5>
+                <p class="lead">{{ el.text }}</p>
+            </div>
+
         {% endfor %}
     </div>
 </section>
